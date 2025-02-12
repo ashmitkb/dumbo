@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <style>
         body {
             background-color: black;
-            background-image: none;
             color: white;
             font-family: Arial, sans-serif;
             margin: 0;
@@ -31,57 +31,45 @@
             padding: 10px 15px;
             font-size: 18px;
         }
-        .video-container {
-            text-align: center;
-            padding: 20px;
-            margin-top: 50px;
-        }
-        .video-thumbnail {
-            width: 640px;
-            cursor: pointer;
-        }
-        video {
-            display: none;
-            width: 100%;
-            height: 100vh;
-        }
-        .section {
-            margin: 50px;
-        }
-        .section-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .thumbnail-row {
-            display: flex;
-            justify-content: center;
-            gap: 100px;
-            margin-bottom: 200px;
-        }
-        .thumbnail-row img {
-            width: 200px;
-            cursor: pointer;
-        }
+        
+        /* Updated Banner Section */
         .banner {
-            background-image: url('us10.jpg'); /* Replace with your banner image */
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            display: flex;
-            color: white;
-            padding-left: 50px;
-            padding: 20px;
+            position: relative;
+            width: 100%;
+            height: 500px; /* Adjust height */
+            overflow: hidden;
         }
-        .banner h1 {
-            font-size: 48px;
+        
+        .banner video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .banner-content {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+        
+        .banner-content h1 {
+            font-size: 80px;
             margin: 0;
+            color: white;
         }
-        .banner p {
+        
+        .banner-content p {
             font-size: 24px;
             margin: 10px 0;
+            color: white;
         }
-        .banner button {
+        
+        .banner-content button {
             background-color: red;
             color: white;
             border: none;
@@ -89,9 +77,38 @@
             font-size: 18px;
             cursor: pointer;
         }
+
+        .section {
+            margin: 50px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .thumbnail-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .thumbnail-row img {
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .thumbnail-row img:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
+
+    <!-- Navigation Bar -->
     <div class="navbar">
         <a href="#home">Home</a>
         <a href="#movies">Movies</a>
@@ -100,17 +117,21 @@
         <a href="#mylist">My List</a>
     </div>
 
+    <!-- Updated Banner Section with Video -->
     <div class="banner">
-        <div>
+        <video autoplay muted loop>
+            <source src="usvideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="banner-content">
             <h1>US</h1>
             <p>Continue Watching for US</p>
-            <button onclick="playVideo()">Play</button>
+            <button onclick="playMainVideo()">Play</button>
         </div>
     </div>
 
     <script>
-        function playVideo() {
-            document.querySelector('.video-thumbnail').style.display = 'none';
+        function playMainVideo() {
             let video = document.getElementById('proposal-video');
             video.style.display = 'block';
             video.requestFullscreen();
@@ -118,26 +139,24 @@
         }
     </script>
 
+    <!-- Continue Watching Section -->
     <div class="section">
         <div class="section-title">Continue Watching</div>
         <div class="thumbnail-row">
             <div class="video-container">
-                <img class="video-thumbnail" src="us3.jpg" onclick="playVideo()">
-                <video id="proposal-video" controls>
+                <img class="video-thumbnail" src="us3.jpg" onclick="playMainVideo()">
+                <video id="proposal-video" controls style="display:none;">
                     <source src="usvideo.mp4" type="video/mp4">
                 </video>
             </div>
-            <img src="us4.jpg" alt="Continue 1" height="200" width="200">
-            <img src="us5.jpg" alt="Continue 2" height="200" width="200">
-            <img src="us6.jpg" alt="Continue 3" height="200" width="200">
-            <img src="us7.jpg" alt="Continue 4" height="200" width="200">
-            <img src="us8.jpg" alt="Continue 5" height="200" width="200">
-            <img src="us9.jpg" alt="Continue 6" height="200" width="200">
+            <img src="us4.jpg" alt="Continue 1" style="height: 200px; width: 200px;">
+            <img src="us5.jpg" alt="Continue 2"style="height: 200px; width: 200px;>
+            <img src="us6.jpg" alt="Continue 3"style="height: 200px; width: 200px;>
+            <img src="us7.jpg" alt="Continue 4"style="height: 200px; width: 200px;>
+            <img src="us8.jpg" alt="Continue 5"style="height: 200px; width: 200px;">
+            <img src="us9.jpg" alt="Continue 6"style="height: 200px; width: 200px;"">
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-    
+
 </body>
 </html>
